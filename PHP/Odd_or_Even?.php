@@ -22,6 +22,13 @@ function odd_or_even(array $a): string {
     }
 }
 
+/*
+Best code in codeWars:
+function odd_or_even(array $a): string {
+    // Your code here
+    return array_sum($a) % 2 ? 'odd' : 'even';
+}
+*/
 echo odd_or_even([0]);
 echo odd_or_even([2, 5, 34, 6]);
 echo odd_or_even([0, -1, -5]);
