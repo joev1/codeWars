@@ -334,3 +334,79 @@ function finalGrade($exam, $projects) {
 //        else return 0;
 //    }
 //}
+
+/*
+Our football team finished the championship. The result of each match look like "x:y". Results of all matches are recorded in the collection.
+
+For example: ["3:1", "2:2", "0:1", ...]
+
+Write a function that takes such collection and counts the points of our team in the championship. Rules for counting points for each match:
+
+if x>y - 3 points
+if x<y - 0 point
+if x=y - 1 point
+Notes:
+
+there are 10 matches in the championship
+0 <= x <= 4
+0 <= y <= 4
+ * */
+
+//function points(array $games) {
+//    foreach($games as $element):
+//        $result = $element
+//    endforeach;
+//
+//    return $result;
+//
+//}
+//var_dump(points(['1:0','2:0','3:0','4:0','2:1','3:1','4:1','3:2','4:2','4:3']));
+
+/*
+ * Summation
+Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
+
+For example:
+
+summation(2) -> 3
+1 + 2
+
+summation(8) -> 36
+1 + 2 + 3 + 4 + 5 + 6 + 7 + 8*/
+function summation($n) {
+    $sum = 0;
+ for ($i = 1; $i <= $n; $i++) {
+      $sum += $i;
+ };
+  return $sum;
+}
+//    echo summation(6);
+//
+// Cleverest code:
+//function summation($n) {
+//  return $n * ($n + 1) / 2;
+//}
+//function summation($n) {
+//  return array_sum(range(1, $n));
+//}
+//
+/*
+You get an array of numbers, return the sum of all of the positives ones.
+Example [1,-4,7,12] => 1 + 7 + 12 = 20
+Note: if there is nothing to sum, the sum is default to 0.
+*/
+function positive_sum($arr)
+{
+    return array_sum(array_filter($arr, function ($n){ return $n > 0;}));
+}
+//var_dump(positive_sum([1, -2, 3, 4, 5]));
+// interesting code:
+// function positive_sum($arr) {
+//  $sum = 0;
+//
+//  foreach ($arr as $element) {
+//    $sum += $element > 0 ? $element : 0;
+//  }
+//
+//  return $sum;
+//}
