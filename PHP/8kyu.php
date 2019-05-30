@@ -1,4 +1,7 @@
 <?php
+// CodeWars 8kyu PHP
+
+
 /*
 Given an array of integers as strings and numbers, return the sum of the array values as if all were numbers.
 
@@ -9,6 +12,8 @@ Return your answer as a number.
 function sum_mix($a) {
     return array_sum($a);
 }
+
+
 
 /*
  * Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
@@ -23,22 +28,39 @@ Patrick Feeney => P.F
 
  * */
 //My code:
-function abbrevName($name){
-    $arr = preg_split("/[\s,]+/", $name);
-//    $first = array_slice($arr, 0);
-//    $second = array_slice($arr, 0);
+//function abbrevName($name)
+//{
+//   preg_match_all("/[^a-z]/", $name, $matches);
+//   return str_replace(" ", ".", implode($matches[0]));
+//}
 
-    return max($arr). "." . min($arr);
+//function abbrevName($name)
+//{
+//    preg_match_all("/[A-Z]/", $name, $matches);
+//    return str_replace(" ", ".", implode(".", $matches[0]));
+//}
+
+function abbrevName(string $name): string
+{
+    // to an array
+    $divide = explode(' ', $name);
+    // return first values, upper case of each index, and dot
+    return strtoupper("{$divide[0][0]}.{$divide[1][0]}");
 }
-//var_dump(abbrevName("Sam Harris"));
+
+
+
 
 /*It's pretty straightforward. Your goal is to create a function that removes the first and last characters of a string. You're given one parameter, the original string. You don't have to worry with strings with less than two characters.
 */
 //My code:
 function remove_char(string $s): string {
     // Write your code here
+    // to an array
     $st = str_split($s);
+    // removing first and last value
     $newarray = array_slice($st, 1, -1);
+    // to string
     return implode($newarray);
 }
 //echo remove_char("person");
@@ -61,6 +83,8 @@ function remove_char(string $s): string {
 //    }
 //    return $tmp;
 //}
+
+
 
 /*Given a non-empty array of integers, return the result of multiplying the values together in order. Example:
 */
@@ -142,6 +166,8 @@ Remove n exclamation marks in the sentence from left to right. n is positive int
 //    return $r;
 //}
 
+
+
 /*
  * Very simple, given a number, find its opposite.
 Examples:
@@ -210,6 +236,8 @@ function opposite($n) {
 //  }
 //}
 
+
+
 /*
  Given an array of integers.
 
@@ -225,20 +253,39 @@ function countPositivesSumNegatives($input) {
 //    if ( !empty($input)) {
 //        return empty($input);
 //    }
-    $newArray = [0, 0];
-
-    for ($i = 0; $i < count($input); $i++){
-       if($input[$i] <= 0) {
-           $newArray[1] += $input[$i];
-       } else {
-           $newArray[0] += 1;
-       }
-    }
-    return $newArray;
-}
-//echo countPositivesSumNegatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]);
-//var_dump(countPositivesSumNegatives(countPositivesSumNegatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15])));
+//    $newArray = [];
 //
+//    for ($i = 0; $i < count($input); $i++){
+//       if($input[$i] <= 0) {
+//           $newArray[1] += $input[$i];
+//       } else {
+//           $newArray[0] += 1;
+//       }
+//    }
+//    return $newArray;
+//    $arr2 = array_filter($input, function ($n) {
+//        return $n < 0;
+//    });
+//    return explode(",",(max($input) . "," . array_sum($arr2)));
+////    return explode(",",int(max($input) . "," . array_sum($arr2)));
+///
+    if (empty($input)) {
+        return [];
+    }
+    $arr1 = array_filter($input, function ($p) {
+        return $p > 0;
+    });
+    $arr2 = array_filter($input, function ($n) {
+        return $n < 0;
+    });
+    return $newarr = [count($arr1), array_sum($arr2)];
+
+}
+
+//var_dump(countPositivesSumNegatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]));
+//var_dump(countPositivesSumNegatives([]));
+//var_dump(countPositivesSumNegatives([0, 0]));
+////
 
 
 //function countSheep($num){
@@ -280,39 +327,23 @@ function countSheep($num){
 /*
  * */
 
-function finalGrade($exam, $projects) {
+
+
+//function finalGrade($exam, $projects) {
 // write your answer here
-//    return $result = (
-//        ($exam > 90 || $projects > 10)
-//        ? ($result = 100)
-//            : ($exam > 75 || $projects >= 5)
-//                ? ($result = 90)
-//                    : ( $exam > 50 || $projects >= 2)
-//                        ? ($result = 75)
-//                            : ( $exam < 50 || $projects < 2)
-//                                ? ($result = 0) : $result = 0);
 //    if ($exam > 90 || $projects > 10) {
 //        return $result = 100;
-//    } elseif ($exam > 75 || $projects >= 5) {
+//    }
+//    if ($exam > 75 && $projects >= 5) {
 //        return $result = 90;
-//    } elseif ($exam > 50 || $projects >= 2) {
+//    }
+//    if ($exam > 50 && $projects >= 2) {
 //        return $result = 75;
-//    } else {
+//    }
+//    if ($exam < 50 && $projects < 2) {
 //        return $result = 0;
 //    }
-    if ($exam > 90 || $projects > 10) {
-        return $result = 100;
-    }
-    if ($exam > 75 && $projects >= 5) {
-        return $result = 90;
-    }
-    if ($exam > 50 && $projects >= 2) {
-        return $result = 75;
-    }
-    if ($exam < 50 && $projects < 2) {
-        return $result = 0;
-    }
-}
+//}
 //echo finalGrade(51, 2);
 
 //best code:
@@ -334,6 +365,8 @@ function finalGrade($exam, $projects) {
 //        else return 0;
 //    }
 //}
+
+
 
 /*
 Our football team finished the championship. The result of each match look like "x:y". Results of all matches are recorded in the collection.
@@ -361,6 +394,8 @@ there are 10 matches in the championship
 //
 //}
 //var_dump(points(['1:0','2:0','3:0','4:0','2:1','3:1','4:1','3:2','4:2','4:3']));
+
+
 
 /*
  * Summation
@@ -390,6 +425,9 @@ function summation($n) {
 //  return array_sum(range(1, $n));
 //}
 //
+
+
+
 /*
 You get an array of numbers, return the sum of all of the positives ones.
 Example [1,-4,7,12] => 1 + 7 + 12 = 20
@@ -397,6 +435,7 @@ Note: if there is nothing to sum, the sum is default to 0.
 */
 function positive_sum($arr)
 {
+    //filter values that > 0 and result sum
     return array_sum(array_filter($arr, function ($n){ return $n > 0;}));
 }
 //var_dump(positive_sum([1, -2, 3, 4, 5]));
@@ -410,3 +449,29 @@ function positive_sum($arr)
 //
 //  return $sum;
 //}
+
+
+
+//function solution($str) {
+//    $len = strlen($str);
+//    $str = str_split($str);
+//    for($i = 0; $i < $len / 2; $i++) {
+//        $temp = $str[$i];
+//        $str[$i] = $str[$len - $i - 1];
+//        $str[$len - $i - 1] = $temp;
+//    }
+//    $str = implode($str);
+//    return $str;
+//}
+
+
+
+//function fake_bin(string $s): string {
+//    // Write your code here
+//    so, str to array, change values with array_map, array to str
+//    return $arr2 = array_map(function ($value) { return ($value >= 5) ? $value = 1 : $value = 0; }, str_split($s));
+//
+//}
+//var_dump(fake_bin('45385593107843568'));
+
+
